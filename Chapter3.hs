@@ -23,3 +23,13 @@ isBackto xs = case head xs == last xs of
                 where
                   ms = tail . init $ xs
                   
+-- 排序一个包含许多列表的列表，其排序规则基于他的子列表的长度．
+import Data.List
+sortfun :: [a] -> [a] -> Ordering
+sortfun xs ys
+          | length xs > length ys = GT
+          | length xs == length ys = EQ
+          | length xs < length ys = LT
+
+sortByLength :: [[a]] -> [[a]]
+sortByLength xss = sortBy sortfun xss
