@@ -33,3 +33,14 @@ sortfun xs ys
 
 sortByLength :: [[a]] -> [[a]]
 sortByLength xss = sortBy sortfun xss
+
+-- 定义一个函数，其用一个分隔符将一个包含许多列表的列表连接在一起．
+intersperse1 :: a -> [[a]] -> [a]
+intersperse1 _ (x:[]) = x
+intersperse1 s xss = foldl (\retult xs -> retult ++ [s] ++ xs) (head xss) (tail xss)
+
+intersperse2 :: a -> [[a]] -> [a]
+intersperse2 s xs
+            | null xs = []
+            | length xs == 1 = head xs
+            | otherwise = head xs ++ [s] ++ intersperse2 s (tail xs)
