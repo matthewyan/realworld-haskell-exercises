@@ -44,3 +44,11 @@ intersperse2 s xs
             | null xs = []
             | length xs == 1 = head xs
             | otherwise = head xs ++ [s] ++ intersperse2 s (tail xs)
+
+-- 求二叉树的高度
+treeHeight Empty = 0
+treeHeight (Node a l r)
+              | lh > rh = lh + 1
+              | rh >= lh = rh + 1
+                where lh = treeHeight l
+                      rh = treeHeight r
